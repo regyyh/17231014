@@ -7,7 +7,7 @@ const {
     PermissionFlagsBits, ChannelType
 } = require('discord.js');
 const { MongoClient, ObjectId } = require("mongodb");
-const { startServer, setClient } = require('./server');
+const { startServer, setClient, setStartBotFn } = require('./server');
 
 // Módulos do seu bot  
 const { setUserSkin, getUserSkin } = require('./config'); 
@@ -1312,4 +1312,4 @@ client.on(Events.InteractionCreate, async (interaction) => {
 });
 
 startServer();
-client.login(process.env.DISCORD_TOKEN);
+setStartBotFn(() => client.login(process.env.DISCORD_TOKEN));
